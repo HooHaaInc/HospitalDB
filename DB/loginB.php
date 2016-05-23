@@ -1,10 +1,22 @@
 <?php
-	require_once __DIR__ . '/connect.php';
-	//$db = new mysqli("localhost","root","","smed");
-	$db = new DB_Connect();
-	$db = $db->connect();
-	if ($db->connect_errno) {
-    	echo "Falló la conexión a MySQL: (" . $db->connect_errno . ") " . $db->connect_error;
-	}
-				
+	require_once('connect.php');
+	$conn = dbConnect();
+	
+	
+	if(isset($_POST['usuario']) && isset($_POST['password'])){
+		$usuario = $_POST['usuario'];
+		$password = $_POST['password'];
+		
+		$query = "select * from usuario where nombre = '".$usuario."' and pasw = '".$password."'";
+		$result = mysqli_query($conn, $query);
+		$nregistros = $result->num_rows;
+		if($nregistros>0){
+			?>
+			<script language="javascript">
+    		window.location.href = "../pages/index.html"
+		</script>
+		
+		<?php
+		}
+	}				
 ?>
