@@ -11,12 +11,16 @@
 		$result = mysqli_query($conn, $query);
 		$nregistros = $result->num_rows;
 		if($nregistros>0){
-			?>
-			<script language="javascript">
-    		window.location.href = "../pages/index.html"
-		</script>
-		
-		<?php
+			session_start();
+			$_SESSION['usuario'] = $usuario;
+			$user = $_SESSION['usuario'];
+			echo '<script>window.location.href="../pages/index.html"</script>';
+			
+		}else{
+			echo '<script language = javascript>
+				alert("Los datos son incorrectos. Vuelva a intentarlo")
+				self.location = "../pages/login.php"
+				</script>';
 		}
 	}				
 ?>
