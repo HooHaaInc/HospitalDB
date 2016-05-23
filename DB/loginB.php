@@ -1,8 +1,7 @@
 <?php
 	require_once('connect.php');
-	$conn = dbConnect();
-	
-	
+	$conn = dbConnect();	
+	session_start();//iniciamos sesion
 	if(isset($_POST['usuario']) && isset($_POST['password'])){
 		$usuario = $_POST['usuario'];
 		$password = $_POST['password'];
@@ -11,10 +10,12 @@
 		$result = mysqli_query($conn, $query);
 		$nregistros = $result->num_rows;
 		if($nregistros>0){
-			session_start();
-			$_SESSION['usuario'] = $usuario;
-			$user = $_SESSION['usuario'];
-			echo '<script>window.location.href="../pages/index.html"</script>';
+			
+			$_SESSION['user'] = $usuario;
+			$user = $_SESSION['user'];
+			echo $user;
+			header('location:../pages/index.php');
+			//echo '<script>window.location.href="../pages/index.php"</script>';
 			
 		}else{
 			echo '<script language = javascript>
