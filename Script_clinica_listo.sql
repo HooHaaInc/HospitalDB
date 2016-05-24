@@ -500,3 +500,10 @@ ADD
 
   FOREIGN KEY(id_Hospitalizacion)
     REFERENCES Hospitalizacion(id_Hospitalizacion);
+
+  CREATE TABLE Usuario (
+  id_usuario INT(11) NOT NULL AUTO_INCREMENT,  
+  nombre VARCHAR(50) NOT NULL,
+  pasw VARCHAR(20) NOT NULL,
+  PRIMARY KEY(id_usuario)
+)ENGINE=InnoDB;
